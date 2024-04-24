@@ -6,7 +6,7 @@ package com.mycompany.progetto_azienda;
 
 /**
  *
- * @author taran
+ * @author harry
  */
 public class App {
 
