@@ -12,19 +12,29 @@ import java.util.Date;
  * @author Studente
  */
 public class Dipendente {
-    
+    private int id_Dipendente;
     private String nome;
     private String cognome;
     private String ruolo;
     private int stipendio;
     private Date dataAssunzione;
+    private static int id;
 
     public Dipendente(String nome, String cognome, String ruolo, int stipendio, Date dataAssunzione) {
+        setId_Dipendente();
         this.nome = nome;
         this.cognome = cognome;
         this.ruolo = ruolo;
         this.stipendio = stipendio;
         this.dataAssunzione = dataAssunzione;
+    }
+
+    public int getId() {
+        return id;
+    }
+    
+    public void setId_Dipendente() {
+        this.id_Dipendente = id++;
     }
 
     public String getNome() {
@@ -69,7 +79,7 @@ public class Dipendente {
 
     @Override
     public String toString() {
-        return "Dipendente{" + "nome=" + nome + ", cognome=" + cognome + ", ruolo=" + ruolo + ", stipendio=" + stipendio + ", dataAssunzione=" + dataAssunzione + '}';
+        return "Dipendente{" + "id_Dipendente=" + id_Dipendente + ", nome=" + nome + ", cognome=" + cognome + ", ruolo=" + ruolo + ", stipendio=" + stipendio + ", dataAssunzione=" + dataAssunzione + '}';
     }
 
 }
