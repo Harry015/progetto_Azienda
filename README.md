@@ -5,6 +5,7 @@ Reparto : Rappresenta un reparto che gestisce un elenco di dipendenti.
 Azienda : Gestisce più reparti e fornisce metodi per aggiungere, rimuovere e elencare reparti.
 
 Attributi classe dipendente:
+- idDipendente
 - nome
 - cognome
 - ruolo
