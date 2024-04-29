@@ -18,7 +18,7 @@ public class Dipendente {
     private String ruolo;
     private int stipendio;
     private Date dataAssunzione;
-    private static int id;
+    private static int id=1;
 
     public Dipendente(String nome, String cognome, String ruolo, int stipendio, Date dataAssunzione) {
         setId_Dipendente();
@@ -29,8 +29,8 @@ public class Dipendente {
         this.dataAssunzione = dataAssunzione;
     }
 
-    public int getId() {
-        return id;
+    public int getId_Dipendente() {
+        return id_Dipendente;
     }
     
     public void setId_Dipendente() {

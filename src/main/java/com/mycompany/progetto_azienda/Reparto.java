@@ -17,6 +17,16 @@ public class Reparto {
     private final static int NUM_MAX_DIPENDENTI=11;
     private Dipendente[] dipendenti;
     private String nomeReparto;
+    private int id_Reparto;
+    private static int id=1;
+    
+    public int getId_Reparto() {
+        return id_Reparto;
+    }
+    
+    public void setId_Reaprto() {
+        this.id_Reparto = id++;
+    }
 
     public Reparto(String nomeReparto)
     {
@@ -42,7 +52,7 @@ public class Reparto {
         Dipendente d;
         for (int i = 0; i < NUM_MAX_DIPENDENTI; i++) {
             d=dipendenti[i];
-            if(d.getId()==id){
+            if(d.getId_Dipendente()==id){
                 x=1;
                 return d;
             }
@@ -57,7 +67,7 @@ public class Reparto {
         Dipendente d;
         for (int i = 0; i < NUM_MAX_DIPENDENTI; i++) {
             d=dipendenti[i];
-            if(d.getId()==id){
+            if(d.getId_Dipendente()==id){
                 dipendenti[i]=null;
             }
         }
@@ -65,7 +75,7 @@ public class Reparto {
             throw new DipendenteNonTrovatoException();
     }
     
-    public int getNumVolumi()
+    public int getNumDipendenti()
     {
         int contatore=0;
         for(int i=0;i<NUM_MAX_DIPENDENTI;i++)
@@ -79,6 +89,7 @@ public class Reparto {
     public String toString()
     {
         String s="";
+        s+="Nome:"+nomeReparto+"\n";
         for(int i=0;i<NUM_MAX_DIPENDENTI;i++)
         {
             if (dipendenti[i]==null)
