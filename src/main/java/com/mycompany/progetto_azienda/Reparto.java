@@ -1,5 +1,6 @@
 package com.mycompany.progetto_azienda;
 
+import eccezioni.CapoRepartoNonTrovatoException;
 import eccezioni.DipendenteNonTrovatoException;
 import eccezioni.RepartoPienoException;
 import java.util.ArrayList;
@@ -28,6 +29,10 @@ public class Reparto {
     public void setId_Reaprto() {
         this.id_Reparto = id++;
     }
+    
+    public String getNomeReparto() {
+        return nomeReparto;
+    }
 
     public Reparto(String nomeReparto)
     {
@@ -55,6 +60,19 @@ public class Reparto {
         return null;
     }
     
+    public String getNomeCapoReparto() throws CapoRepartoNonTrovatoException {
+        int x=0;
+        for (Dipendente dipendente : dipendenti) {
+            if (dipendente.getRuolo()=="capo reparto") {
+                x=1;
+                return dipendente.getNome();
+            }
+        }
+        if(x==0)
+            throw new CapoRepartoNonTrovatoException();
+        return "";
+    }
+    
     public void rimuoviDipendente(int id) throws DipendenteNonTrovatoException {
         boolean x=false;
         for (Dipendente dipendente : dipendenti) {
@@ -76,6 +94,12 @@ public class Reparto {
             }
         }
         return c;
+    }
+    
+    public void approvaRichiesteFerie(){
+        for (Dipendente dipendente : dipendenti) {
+            System.out.println(dipendente.getFerie());
+        }
     }
     
     public String toString()

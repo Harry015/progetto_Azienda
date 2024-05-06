@@ -7,8 +7,12 @@ package com.mycompany.progetto_azienda;
 
 import eccezioni.RepartoNonTrovatoException;
 import eccezioni.AziendaPienaException;
+import eccezioni.CapoRepartoNonTrovatoException;
+import eccezioni.DipendenteNonTrovatoException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -71,6 +75,41 @@ public class Azienda {
             }
         }
         return c;
+    }
+    
+    public Reparto RepartoAppartenenza(int id)
+    {
+        Dipendente d;
+        for (Reparto r : reparti) {
+            if (r!=null) {
+                try {
+                    d=r.getDipendente(id);
+                    if(d!=null)
+                       return r;
+                } 
+                catch (DipendenteNonTrovatoException ex) {
+                    //vai avanti
+                }
+            }
+        }
+        return null;
+    }
+    
+    public String RepartiCheGestisci(String nomeCapoReparto)
+    {
+        String s="";
+        for (Reparto r : reparti) {
+            if (r!=null) {
+                try {
+                    if(r.getNomeCapoReparto().equals(nomeCapoReparto))
+                        s+=r.toString();
+                } 
+                catch (CapoRepartoNonTrovatoException ex) {
+                    //vai avanti
+                }
+            }
+        }
+        return s;
     }
     
     public String toString()

@@ -1,5 +1,6 @@
 package com.mycompany.progetto_azienda;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 /*
@@ -19,6 +20,27 @@ public class Dipendente {
     private int stipendio;
     private Date dataAssunzione;
     private static int id=1;
+    private ArrayList<Ferie> ferie;
+
+    public String getFerie() {
+        int x=0;
+        String s="";
+        if(this.getRuolo()!="capo reparto"){
+            s="Dipendente: " + this.getNome() + " " + this.getCognome();
+            for (Ferie f : ferie) {
+                x=1;
+                s+="\nData inizio: " + f.getDataInizio() + "\nData fine: " + f.getDataFine() + "\nMotivo: " + f.getMotivo() + "\nApprovato: " + f.isApprovato();       
+            }
+            if(x==0)
+                s+=" Nessuna richiesta presente";
+            
+        }
+        return s;
+    }
+
+    public void setFerie(Ferie f) {
+        ferie.add(f);
+    }
 
     public Dipendente(String nome, String cognome, String ruolo, int stipendio, Date dataAssunzione) {
         setId_Dipendente();
@@ -27,6 +49,7 @@ public class Dipendente {
         this.ruolo = ruolo;
         this.stipendio = stipendio;
         this.dataAssunzione = dataAssunzione;
+        this.ferie=new ArrayList<>();
     }
 
     public int getId_Dipendente() {
@@ -79,7 +102,7 @@ public class Dipendente {
 
     @Override
     public String toString() {
-        return "Dipendente{" + "id_Dipendente=" + id_Dipendente + ", nome=" + nome + ", cognome=" + cognome + ", ruolo=" + ruolo + ", stipendio=" + stipendio + ", dataAssunzione=" + dataAssunzione + '}';
+        return "Dipendente{" + "id_Dipendente=" + this.getId_Dipendente()+ ", nome=" + this.getNome()+ ", cognome=" + this.getCognome() + ", ruolo=" + this.getRuolo() + ", stipendio=" + this.getStipendio() + ", dataAssunzione=" + this.getDataAssunzione() + '}';
     }
 
 }
