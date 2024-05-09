@@ -4,21 +4,27 @@
  */
 package com.mycompany.progetto_azienda;
 
+import eccezioni.dataNonValidaException;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
 /**
  *
- * @author taran
+ * @author harry
  */
 public class Ferie {
-    private Date dataInizio;
-    private Date dataFine;
+    private LocalDate dataInizio;
+    private LocalDate dataFine;
     private String motivo;
     private boolean approvato;
 
     // Costruttore
-    public Ferie(Date dataInizio, Date dataFine, String motivo) {
+    public Ferie(LocalDate dataInizio, LocalDate dataFine, String motivo) throws dataNonValidaException {
+        if(dataInizio.getDayOfMonth()<=0 && dataInizio.getMonthValue()<=0 && dataInizio.getYear()<=0)
+            throw new dataNonValidaException();
+        if(dataFine.getDayOfMonth()<=0 && dataFine.getMonthValue()<=0 && dataFine.getYear()<=0)
+            throw new dataNonValidaException();
         this.dataInizio = dataInizio;
         this.dataFine = dataFine;
         this.motivo = motivo;
@@ -26,19 +32,19 @@ public class Ferie {
     }
 
     // Metodi getter e setter per gli attributi
-    public Date getDataInizio() {
+    public LocalDate getDataInizio() {
         return dataInizio;
     }
 
-    public void setDataInizio(Date dataInizio) {
+    public void setDataInizio(LocalDate dataInizio) {
         this.dataInizio = dataInizio;
     }
 
-    public Date getDataFine() {
+    public LocalDate getDataFine() {
         return dataFine;
     }
 
-    public void setDataFine(Date dataFine) {
+    public void setDataFine(LocalDate dataFine) {
         this.dataFine = dataFine;
     }
 
@@ -50,12 +56,27 @@ public class Ferie {
         this.motivo = motivo;
     }
 
+    /**
+     * Metodo per vedere se la richiesta è approvata o no
+     * @return 
+     */
     public boolean isApprovato() {
         return approvato;
     }
 
+    /**
+     * Metodo per assegnare true o false al attributo approvato
+     * @param approvato 
+     */
     public void setApprovato(boolean approvato) {
         this.approvato = approvato;
+    }
+    
+    public String toString(){
+        return "Data inizio: " + dataInizio + "\n" +
+               "Data fine: " + dataFine + "\n" +
+               "Motivo: " + motivo + "\n" +
+               "Stato: " + approvato;
     }
     
 }
